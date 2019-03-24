@@ -19,7 +19,8 @@ extension ThirdScene {
         bigTri1 = SKSpriteNode(texture: bigTri1Texture)
         self.bigTri1.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         self.bigTri1.name = PieceIdentifier.triangle1.rawValue
-        self.bigTri1.position = CGPoint(x: 50, y: 100)
+//        self.bigTri1.position = CGPoint(x: 50, y: 100)
+        self.bigTri1.position = CGPoint(x: 70, y: 120)
         bigTriangle1.shape = bigTri1
         self.addChild(bigTriangle1.shape)
         
@@ -35,7 +36,8 @@ extension ThirdScene {
         bigTri2 = SKSpriteNode(texture: bigTri2Texture)
         self.bigTri2.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         self.bigTri2.name = PieceIdentifier.triangle2.rawValue
-        self.bigTri2.position = CGPoint(x: 100, y: 150)
+//        self.bigTri2.position = CGPoint(x: 100, y: 150)
+        self.bigTri2.position = CGPoint(x: 120, y: 170)
         bigTriangle2.shape = bigTri2
         addChild(bigTriangle2.shape)
         
@@ -51,7 +53,8 @@ extension ThirdScene {
         smallTri1 = SKSpriteNode(texture: smallTri1Texture)
         self.smallTri1.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         self.smallTri1.name = PieceIdentifier.triangle3.rawValue
-        self.smallTri1.position = CGPoint(x: 50, y: 25)
+        self.smallTri1.position = CGPoint(x: 70, y: 45)
+//        self.smallTri1.position = CGPoint(x: 50, y: 25)
         smallTriangle1.shape = smallTri1
         addChild(smallTriangle1.shape)
         
@@ -67,15 +70,16 @@ extension ThirdScene {
         smallTri2 = SKSpriteNode(texture: smallTri2Texture)
         self.smallTri2.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         self.smallTri2.name = PieceIdentifier.triangle4.rawValue
-        self.smallTri2.position = CGPoint(x: 125, y: 100)
+        self.smallTri2.position = CGPoint(x: 145, y: 120)
+//        self.smallTri2.position = CGPoint(x: 125, y: 100)
         smallTriangle2.shape = smallTri2
         addChild(smallTriangle2.shape)
         
         // create square
         self.squarePath.move(to: CGPoint(x: frame.minX + 100, y: frame.minY))
-        self.squarePath.addLine(to: CGPoint(x: 150, y: 50))
-        self.squarePath.addLine(to: CGPoint(x: 100, y: 100))
         self.squarePath.addLine(to: CGPoint(x: 50, y: 50))
+        self.squarePath.addLine(to: CGPoint(x: 100, y: 100))
+        self.squarePath.addLine(to: CGPoint(x: 150, y: 50))
         self.squarePath.addLine(to: CGPoint(x: 100, y: 0))
         squareShape = SKShapeNode(path: squarePath.cgPath)
         self.squareShape.fillColor = #colorLiteral(red: 0.7294117647, green: 0.8470588235, blue: 0.8588235294, alpha: 1)
@@ -84,7 +88,8 @@ extension ThirdScene {
         squareSK = SKSpriteNode(texture: squareTexture)
         self.squareSK.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         self.squareSK.name = PieceIdentifier.square.rawValue
-        self.squareSK.position = CGPoint(x: 100, y: 50)
+        self.squareSK.position = CGPoint(x: 120, y: 70)
+//        self.squareSK.position = CGPoint(x: 100, y: 50)
         square.shape = squareSK
         addChild(square.shape)
         
@@ -98,9 +103,12 @@ extension ThirdScene {
         self.mediumTriShape.zPosition = 1
         let mediumTriTexture = view?.texture(from: mediumTriShape)
         mediumTri = SKSpriteNode(texture: mediumTriTexture)
-        self.mediumTri.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+        self.mediumTri.anchorPoint = CGPoint(x: 0.8, y: 0.2)
+//        self.mediumTri.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         self.mediumTri.name = PieceIdentifier.square.rawValue
-        self.mediumTri.position = CGPoint(x: 150, y: 50)
+        self.mediumTri.position = CGPoint(x: 200, y: 40)
+//        self.mediumTri.position = CGPoint(x: 180, y: 20)
+//        self.mediumTri.position = CGPoint(x: 150, y: 50)
         mediumTriangle.shape = mediumTri
         addChild(mediumTriangle.shape)
         
@@ -117,12 +125,14 @@ extension ThirdScene {
         parallel = SKSpriteNode(texture: parallelTexture)
         self.parallel.name = PieceIdentifier.parallelogram.rawValue
         self.parallel.anchorPoint = CGPoint(x: 0.5, y: 0.5)
-        self.parallel.position = CGPoint(x: 175, y: 125)
+//        self.parallel.position = CGPoint(x: 175, y: 125)
+        self.parallel.position = CGPoint(x: 195, y: 145)
         parallelogram.shape = parallel
         addChild(parallelogram.shape)
         
     }
     
+    // MARK: Create challenge
     func setChallenge(){
         
         // create challenge parallelogram
@@ -140,7 +150,7 @@ extension ThirdScene {
         let parallel = SKSpriteNode(texture: parallelTexture)
         parallel.name = "parallelogramChallenge"
         parallel.anchorPoint = CGPoint(x: 0.5, y: 0.5)
-        parallel.position = CGPoint(x: 300, y: 100)
+        parallel.position = CGPoint(x: 380, y: 100)
         addChild(parallel)
         
         // create challenge triangle 1
@@ -155,8 +165,9 @@ extension ThirdScene {
         bigTri1Shape.zPosition = 1
         let bigTri1Texture = view?.texture(from: bigTri1Shape)
         let bigTri1 = SKSpriteNode(texture: bigTri1Texture)
+        bigTri1.name = "triangle1Challenge"
         bigTri1.anchorPoint = CGPoint(x: 0.5, y: 0.5)
-        bigTri1.position = CGPoint(x: 375, y: 175)
+        bigTri1.position = CGPoint(x: 455, y: 175)
         addChild(bigTri1)
         
         // create challenge triangle 2
@@ -173,7 +184,7 @@ extension ThirdScene {
         let bigTri2 = SKSpriteNode(texture: bigTri2Texture)
         bigTri2.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         bigTri2.name = "triangle2Challenge"
-        bigTri2.position = CGPoint(x: 375, y: 273)
+        bigTri2.position = CGPoint(x: 455, y: 273)
         addChild(bigTri2)
         
         // create challenge square
@@ -191,7 +202,7 @@ extension ThirdScene {
         let square = SKSpriteNode(texture: squareTexture)
         square.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         square.name = "squareChallenge"
-        square.position = CGPoint(x: 425, y: 125)
+        square.position = CGPoint(x: 505, y: 125)
         addChild(square)
         
         // create challenge triangle 3
@@ -208,7 +219,7 @@ extension ThirdScene {
         let smallTri1 = SKSpriteNode(texture: smallTri1Texture)
         smallTri1.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         smallTri1.name = "triangle3Challenge"
-        smallTri1.position = CGPoint(x: 450, y: 75)
+        smallTri1.position = CGPoint(x: 530, y: 75)
         addChild(smallTri1)
         
         // create challenge triangle 4
@@ -225,7 +236,7 @@ extension ThirdScene {
         let smallTri2 = SKSpriteNode(texture: smallTri2Texture)
         smallTri2.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         smallTri2.name = "triangle4Challenge"
-        smallTri2.position = CGPoint(x: 375, y: 399)
+        smallTri2.position = CGPoint(x: 455, y: 399)
         addChild(smallTri2)
         
         // create challenge medium triangle
@@ -242,7 +253,7 @@ extension ThirdScene {
         let mediumTri = SKSpriteNode(texture: mediumTriTexture)
         mediumTri.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         mediumTri.name = "triangle5Challenge"
-        mediumTri.position = CGPoint(x: 375, y: 324)
+        mediumTri.position = CGPoint(x: 455, y: 324)
         addChild(mediumTri)
     }
     

@@ -3,20 +3,17 @@ import SpriteKit
 
 public class SecondScene: SKScene{
     
-    let funLabel = SKLabelNode(text: "Fun fact about me:")
-    let aboutLabel = SKLabelNode(text: "I have 7 pieces and they are called tans.")
-    let aboutShapesLabel = SKLabelNode(text: "My tans have 3 basic shapes:")
-    let theShapesLabel = SKLabelNode(text: "triangles, squares and parallelograms.")
-    let helpLabel = SKLabelNode(text: "Do you know which shapes are those?")
-    let hintLabel = SKLabelNode(text: "Hint: you can drag and drop.")
+    let funLabel = SKLabelNode()
+    let aboutLabel = SKLabelNode()
+    let hintLabel = SKLabelNode()
     
     let triangleImage = SKSpriteNode(imageNamed: "triangle")
     let squareImage = SKSpriteNode(imageNamed: "square")
     let parallelogramImage = SKSpriteNode(imageNamed: "parallelogram")
     
-    let triangleLabel = SKLabelNode(text: "triangle")
-    let squareLabel = SKLabelNode(text: "square")
-    let parallelogramLabel = SKLabelNode(text: "parallelogram")
+    let triangleLabel = SKLabelNode()
+    let squareLabel = SKLabelNode()
+    let parallelogramLabel = SKLabelNode()
     
     let triangleBlank = SKShapeNode()
     let squareBlank = SKShapeNode()
@@ -37,16 +34,65 @@ public class SecondScene: SKScene{
         
     }
     
+    // set labels with instructions
+    func setLabels(){
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.alignment = .center
+        paragraphStyle.lineBreakMode = .byWordWrapping
+        
+        let funString = NSMutableAttributedString(string: "My shapes!", attributes: [NSMutableAttributedString.Key.font : UIFont.systemFont(ofSize: 25, weight: .heavy)])
+        self.funLabel.attributedText = funString
+        self.funLabel.position = CGPoint(x: self.frame.midX, y: self.frame.midY + 180)
+        self.addChild(funLabel)
+        
+        let aboutString = NSMutableAttributedString(string: "I have 7 pieces and they are called tans. My tans have 3 basic shapes: triangles, parallelograms and squares. The triangles have 3 sides, the squares have 4 equal sides and the parallelograms have two pairs of parallel sides. Do you know which shapes are those?", attributes: [NSMutableAttributedString.Key.font : UIFont.systemFont(ofSize: 22, weight: .ultraLight), NSMutableAttributedString.Key.paragraphStyle: paragraphStyle])
+        self.aboutLabel.attributedText = aboutString
+        self.aboutLabel.position = CGPoint(x: self.frame.midX, y: self.frame.midY + 30)
+        self.aboutLabel.numberOfLines = 5
+        self.aboutLabel.preferredMaxLayoutWidth = 480
+        self.addChild(aboutLabel)
+        
+        let hintString = NSMutableAttributedString(string: "Hint: drag the names and drop them in the correct place!", attributes: [NSMutableAttributedString.Key.font : UIFont.systemFont(ofSize: 18, weight: .ultraLight)])
+        self.hintLabel.attributedText = hintString
+        self.hintLabel.position = CGPoint(x: self.frame.midX, y: self.frame.midY)
+        self.addChild(hintLabel)
+        
+        let shapeLabelAttributes = [NSMutableAttributedString.Key.font : UIFont.systemFont(ofSize: 18, weight: .regular)]
+        
+        let triangleString = NSMutableAttributedString(string: "triangle", attributes: shapeLabelAttributes)
+        let squareString = NSMutableAttributedString(string: "square", attributes: shapeLabelAttributes)
+        let parallelogramString = NSMutableAttributedString(string: "parallelogram", attributes: shapeLabelAttributes)
+        
+        self.triangleLabel.attributedText = triangleString
+        self.triangleLabel.position = CGPoint(x:self.frame.midX + 150, y:self.frame.midY - 180)
+        self.triangleLabel.name = "triangleDraggable"
+        self.triangleLabel.zPosition = 1
+        self.addChild(triangleLabel)
+        
+        self.squareLabel.attributedText = squareString
+        self.squareLabel.position = CGPoint(x:self.frame.midX - 150, y:self.frame.midY - 180)
+        self.squareLabel.name = "squareDraggable"
+        self.squareLabel.zPosition = 1
+        self.addChild(squareLabel)
+        
+        self.parallelogramLabel.attributedText = parallelogramString
+        self.parallelogramLabel.position = CGPoint(x:self.frame.midX, y:self.frame.midY - 180)
+        self.parallelogramLabel.name = "parallelogramDraggable"
+        self.parallelogramLabel.zPosition = 1
+        self.addChild(parallelogramLabel)
+        
+    }
+    
     // set spaces for filling with shape labels
     func setBlanks(){
         
         self.triangleBlank.path = UIBezierPath(roundedRect: CGRect(x: 0, y: 0, width: 130, height: 25), cornerRadius: 20).cgPath
         self.triangleBlank.position = CGPoint(x:self.frame.midX - 220, y:self.frame.midY - 140)
-        self.triangleBlank.fillColor = #colorLiteral(red: 0.8745098039, green: 0.9254901961, blue: 0.9294117647, alpha: 1)
+        self.triangleBlank.fillColor = #colorLiteral(red: 0.8680491849, green: 0.9294117647, blue: 0.9224959368, alpha: 1)
         self.triangleBlank.lineWidth = 1
         self.triangleBlank.strokeColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
         self.addChild(triangleBlank)
-    
+        
         self.squareBlank.path = UIBezierPath(roundedRect: CGRect(x: 0, y: 0, width: 130, height: 25), cornerRadius: 20).cgPath
         self.squareBlank.position = CGPoint(x:self.frame.midX - 60, y:self.frame.midY - 140)
         self.squareBlank.fillColor = #colorLiteral(red: 0.8980392157, green: 0.6745098039, blue: 0.6745098039, alpha: 1)
@@ -60,66 +106,6 @@ public class SecondScene: SKScene{
         self.parallelogramBlank.lineWidth = 1
         self.parallelogramBlank.strokeColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
         self.addChild(parallelogramBlank)
-        
-    }
-    
-    // set labels with instructions
-    func setLabels(){
-        
-        self.funLabel.fontColor = #colorLiteral(red: 0.07058823529, green: 0.0431372549, blue: 0.0431372549, alpha: 1)
-        self.funLabel.fontName = ".SFUIText"
-        self.funLabel.position = CGPoint(x: self.frame.midX, y: self.frame.midY + 180)
-        self.funLabel.fontSize = 25
-        self.addChild(funLabel)
-        
-        self.aboutLabel.fontColor = #colorLiteral(red: 0.07058823529, green: 0.0431372549, blue: 0.0431372549, alpha: 1)
-        self.aboutLabel.position = CGPoint(x: self.frame.midX, y: self.frame.midY + 150)
-        self.aboutLabel.fontSize = 25
-        self.addChild(aboutLabel)
-        
-        self.aboutShapesLabel.fontColor = #colorLiteral(red: 0.07058823529, green: 0.0431372549, blue: 0.0431372549, alpha: 1)
-        self.aboutShapesLabel.position = CGPoint(x: self.frame.midX, y: self.frame.midY + 120)
-        self.aboutShapesLabel.fontSize = 25
-        self.addChild(aboutShapesLabel)
-        
-        self.theShapesLabel.fontColor = #colorLiteral(red: 0.07058823529, green: 0.0431372549, blue: 0.0431372549, alpha: 1)
-        self.theShapesLabel.position = CGPoint(x: self.frame.midX, y: self.frame.midY + 90)
-        self.theShapesLabel.fontSize = 25
-        self.addChild(theShapesLabel)
-        
-        self.helpLabel.fontColor = #colorLiteral(red: 0.07058823529, green: 0.0431372549, blue: 0.0431372549, alpha: 1)
-        self.helpLabel.position = CGPoint(x: self.frame.midX, y: self.frame.midY + 60)
-        self.helpLabel.fontSize = 25
-        self.addChild(helpLabel)
-        
-        self.hintLabel.fontColor = #colorLiteral(red: 0.07058823529, green: 0.0431372549, blue: 0.0431372549, alpha: 1)
-        self.hintLabel.position = CGPoint(x: self.frame.midX, y: self.frame.midY + 30)
-        self.hintLabel.fontSize = 18
-        self.addChild(hintLabel)
-        
-        self.triangleLabel.fontColor = #colorLiteral(red: 0.07058823529, green: 0.0431372549, blue: 0.0431372549, alpha: 1)
-        self.triangleLabel.position = CGPoint(x:self.frame.midX + 150, y:self.frame.midY - 180)
-        self.triangleLabel.fontName = ".SFUIText"
-        self.triangleLabel.fontSize = 18
-        self.triangleLabel.name = "triangleDraggable"
-        self.triangleLabel.zPosition = 1
-        self.addChild(triangleLabel)
-        
-        self.squareLabel.fontColor = #colorLiteral(red: 0.07058823529, green: 0.0431372549, blue: 0.0431372549, alpha: 1)
-        self.squareLabel.position = CGPoint(x:self.frame.midX - 150, y:self.frame.midY - 180)
-        self.squareLabel.fontName = ".SFUIText"
-        self.squareLabel.fontSize = 18
-        self.squareLabel.name = "squareDraggable"
-        self.squareLabel.zPosition = 1
-        self.addChild(squareLabel)
-        
-        self.parallelogramLabel.fontColor = #colorLiteral(red: 0.07058823529, green: 0.0431372549, blue: 0.0431372549, alpha: 1)
-        self.parallelogramLabel.position = CGPoint(x:self.frame.midX, y:self.frame.midY - 180)
-        self.parallelogramLabel.fontName = ".SFUIText"
-        self.parallelogramLabel.fontSize = 18
-        self.parallelogramLabel.name = "parallelogramDraggable"
-        self.parallelogramLabel.zPosition = 1
-        self.addChild(parallelogramLabel)
         
     }
     

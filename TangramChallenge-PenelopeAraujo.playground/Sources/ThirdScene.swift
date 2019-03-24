@@ -35,6 +35,11 @@ enum PieceIdentifier: String, CaseIterable {
 
 public class ThirdScene: SKScene {
     
+    // create labels for instructions
+    let challengeLabel = SKLabelNode()
+    let instructionsLabel = SKLabelNode()
+    let hintLabel = SKLabelNode()
+    
     // create parts of tangram pieces
     var bigTri1Path = UIBezierPath()
     var bigTri1Shape = SKShapeNode()
@@ -74,13 +79,13 @@ public class ThirdScene: SKScene {
     var parallelogram = Piece(name: PieceIdentifier.parallelogram.rawValue, shape: SKSpriteNode(), angle: 0, originalPosition: CGPoint(x: 175, y: 125))
     
     // MARK: Create challenge pieces
-    var challengeBigTriangle1 = ChallengePiece(name: "triangle1Challenge", shape: SKSpriteNode(), maxXPosition: 385, minXPosition: 365, maxYPosition: 185, minYPosition: 165, position: CGPoint(x: 375, y: 175), angle: 0)
-    var challengeBigTriangle2 = ChallengePiece(name: "triangle2Challenge", shape: SKSpriteNode(), maxXPosition: 385, minXPosition: 365, maxYPosition: 283, minYPosition: 263, position: CGPoint(x: 375, y: 273), angle: 4.71238899230957)
-    var challengeSmallTriangle1 = ChallengePiece(name: "triangle3Challenge", shape: SKSpriteNode(), maxXPosition: 460, minXPosition: 440, maxYPosition: 85, minYPosition: 65, position: CGPoint(x: 450, y: 75), angle: 1.5707963705062866)
-    var challengeSmallTriangle2 = ChallengePiece(name: "triangle4Challenge", shape: SKSpriteNode(), maxXPosition: 385, minXPosition: 365, maxYPosition: 410, minYPosition: 390, position: CGPoint(x: 375, y: 400), angle: 4.71238899230957)
-    var challengeMediumTriangle = ChallengePiece(name: "triangle5Challenge", shape: SKSpriteNode(), maxXPosition: 385, minXPosition: 365, maxYPosition: 409, minYPosition: 389, position: CGPoint(x: 375, y: 399), angle: 3.1415927410125732)
-    var challengeSquare = ChallengePiece(name: "squareChallenge", shape: SKSpriteNode(), maxXPosition: 435, minXPosition: 415, maxYPosition: 135, minYPosition: 115, position: CGPoint(x: 425, y: 125), angle: 0)
-    var challengeParallelogram = ChallengePiece(name: "parallelogramChallenge", shape: SKSpriteNode(), maxXPosition: 310, minXPosition: 290, maxYPosition: 110, minYPosition: 90, position: CGPoint(x: 300, y: 100), angle: 0)
+    var challengeBigTriangle1 = ChallengePiece(name: "triangle1Challenge", shape: SKSpriteNode(), maxXPosition: 385, minXPosition: 365, maxYPosition: 185, minYPosition: 165, position: CGPoint(x: 455, y: 175), angle: 0)
+    var challengeBigTriangle2 = ChallengePiece(name: "triangle2Challenge", shape: SKSpriteNode(), maxXPosition: 385, minXPosition: 365, maxYPosition: 283, minYPosition: 263, position: CGPoint(x: 455, y: 273), angle: 4.71238899230957)
+    var challengeSmallTriangle1 = ChallengePiece(name: "triangle3Challenge", shape: SKSpriteNode(), maxXPosition: 460, minXPosition: 440, maxYPosition: 85, minYPosition: 65, position: CGPoint(x: 530, y: 75), angle: 1.5707963705062866)
+    var challengeSmallTriangle2 = ChallengePiece(name: "triangle4Challenge", shape: SKSpriteNode(), maxXPosition: 385, minXPosition: 365, maxYPosition: 410, minYPosition: 390, position: CGPoint(x: 455, y: 400), angle: 4.71238899230957)
+    var challengeMediumTriangle = ChallengePiece(name: "triangle5Challenge", shape: SKSpriteNode(), maxXPosition: 385, minXPosition: 365, maxYPosition: 409, minYPosition: 389, position: CGPoint(x: 455, y: 399), angle: 3.1415927410125732)
+    var challengeSquare = ChallengePiece(name: "squareChallenge", shape: SKSpriteNode(), maxXPosition: 435, minXPosition: 415, maxYPosition: 135, minYPosition: 115, position: CGPoint(x: 505, y: 125), angle: 0)
+    var challengeParallelogram = ChallengePiece(name: "parallelogramChallenge", shape: SKSpriteNode(), maxXPosition: 310, minXPosition: 290, maxYPosition: 110, minYPosition: 90, position: CGPoint(x: 380, y: 100), angle: 0)
     
     var allTangramPieces: [Piece] = []
     
@@ -107,6 +112,28 @@ public class ThirdScene: SKScene {
     
     // MARK: Set instructions
     func setInstructions() {
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.alignment = .left
+        paragraphStyle.lineBreakMode = .byWordWrapping
+        
+        let challengeString = NSMutableAttributedString(string: "My challenge!", attributes: [NSMutableAttributedString.Key.font : UIFont.systemFont(ofSize: 25, weight: .heavy)])
+        self.challengeLabel.attributedText = challengeString
+        self.challengeLabel.position = CGPoint(x: self.frame.minX + 165, y: self.frame.midY + 180)
+        self.addChild(challengeLabel)
+        
+        let instructionsString = NSMutableAttributedString(string: "The best thing about me is that my tans can be moved around to create new shapes! Let's try to build this rocket? 🚀", attributes: [NSMutableAttributedString.Key.font : UIFont.systemFont(ofSize: 22, weight: .ultraLight), NSMutableAttributedString.Key.paragraphStyle: paragraphStyle])
+        self.instructionsLabel.attributedText = instructionsString
+        self.instructionsLabel.position = CGPoint(x: self.frame.minX + 170, y: self.frame.midY + 55)
+        self.instructionsLabel.numberOfLines = 5
+        self.instructionsLabel.preferredMaxLayoutWidth = 300
+        self.addChild(instructionsLabel)
+        
+        let hintString = NSMutableAttributedString(string: "Hint: drag and drop the pieces in the right place. Double tap to rotate the selected piece!", attributes: [NSMutableAttributedString.Key.font : UIFont.systemFont(ofSize: 18, weight: .ultraLight)])
+        self.hintLabel.attributedText = hintString
+        self.hintLabel.position = CGPoint(x: self.frame.minX + 168, y: self.frame.midY - 15)
+        self.hintLabel.numberOfLines = 3
+        self.hintLabel.preferredMaxLayoutWidth = 300
+        self.addChild(hintLabel)
         
     }
     
@@ -137,6 +164,8 @@ public class ThirdScene: SKScene {
                     if let identifier = PieceIdentifier(rawValue: name) {
                         if PieceIdentifier.allCases.contains(identifier) {
                             self.currentNode = node
+                            print("o nome é \(self.currentNode?.name)")
+                            print("o node é \(node)")
                         }
                     }
                 }
@@ -158,7 +187,7 @@ public class ThirdScene: SKScene {
             return
         }
         
-        // put piece back in place if its moved to outside the view
+        // MARK: Put piece back in place if its moved to outside the view
         let currentPosition = node.position
         if currentPosition.x >= 600 || currentPosition.y >= 500 || currentPosition.x < 0 || currentPosition.y < 0 {
             for piece in self.allTangramPieces {
@@ -187,7 +216,6 @@ public class ThirdScene: SKScene {
             isInTheRightAngle = (self.currentNode!.zRotation != 0)
         case .square:
             isInTheRightAngle = true
-        // AJEITAR ESSE CASO
         case .parallelogram:
             isInTheRightAngle = (self.currentNode!.zRotation == 0 ||
                 (abs(round(self.currentNode!.zRotation/(CGFloat.pi * 2)) - self.currentNode!.zRotation/(CGFloat.pi * 2))) < 0.02)
@@ -195,46 +223,55 @@ public class ThirdScene: SKScene {
             isInTheRightAngle = false
         }
         
-        print("id \(identifier) is \(isInTheRightAngle)")
+//        print("id \(identifier) is \(isInTheRightAngle)")
         
+        var piecesInRightPlace = 0
+        
+        // MARK: Put the piece in the right place if its nearby
         if isInTheRightAngle {
             if (challengeBigTriangle1.minXPosition)...(challengeBigTriangle1.maxXPosition) ~= Float(bigTriangle1.shape.position.x) || (challengeBigTriangle1.minYPosition)...(challengeBigTriangle1.maxYPosition) ~= Float(bigTriangle1.shape.position.y){
                 bigTriangle1.shape.position = challengeBigTriangle1.position
-                // animar enquanto ele muda de posição
-                
+                piecesInRightPlace += 1
             }
             
             if (challengeBigTriangle2.minXPosition)...(challengeBigTriangle2.maxXPosition) ~= Float(bigTriangle2.shape.position.x) || (challengeBigTriangle2.minYPosition)...(challengeBigTriangle2.maxYPosition) ~= Float(bigTriangle2.shape.position.y) {
                 bigTriangle2.shape.position = challengeBigTriangle2.position
-                // animar enquanto ele muda de posição
+                piecesInRightPlace += 1
+
             }
             
             if (challengeParallelogram.minXPosition)...(challengeParallelogram.maxXPosition) ~= Float(parallelogram.shape.position.x) || (challengeParallelogram.minYPosition)...(challengeParallelogram.maxYPosition) ~= Float(parallelogram.shape.position.y) {
                 parallelogram.shape.position = challengeParallelogram.position
-                // animar enquanto ele muda de posição
+                piecesInRightPlace += 1
+
             }
             
             if (challengeSquare.minXPosition)...(challengeSquare.maxXPosition) ~= Float(square.shape.position.x) || (challengeSquare.minYPosition)...(challengeSquare.maxYPosition) ~= Float(square.shape.position.y) {
                 square.shape.position = challengeSquare.position
-                // animar enquanto ele muda de posição
+                piecesInRightPlace += 1
+
             }
             
             if (challengeSmallTriangle1.minXPosition)...(challengeSmallTriangle1.maxXPosition) ~= Float(smallTriangle1.shape.position.x) || (challengeSmallTriangle1.minYPosition)...(challengeSmallTriangle1.maxYPosition) ~= Float(smallTriangle1.shape.position.y) {
                 smallTriangle1.shape.position = challengeSmallTriangle1.position
-                // animar enquanto ele muda de posição
+                piecesInRightPlace += 1
+
             }
             
             if (challengeSmallTriangle2.minXPosition)...(challengeSmallTriangle2.maxXPosition) ~= Float(smallTriangle2.shape.position.x) || (challengeSmallTriangle2.minYPosition)...(challengeSmallTriangle2.maxYPosition) ~= Float(smallTriangle2.shape.position.y) {
                 smallTriangle2.shape.position = challengeSmallTriangle2.position
-                // animar enquanto ele muda de posição
+                piecesInRightPlace += 1
+
             }
             
             if (challengeMediumTriangle.minXPosition)...(challengeMediumTriangle.maxXPosition) ~= Float(mediumTriangle.shape.position.x) || (challengeMediumTriangle.minYPosition)...(challengeMediumTriangle.maxYPosition) ~= Float(mediumTriangle.shape.position.y) {
                 mediumTriangle.shape.position.x = challengeMediumTriangle.position.x
                 mediumTriangle.shape.position.y = challengeMediumTriangle.position.y - 75
-                // animar enquanto ele muda de posição
+                piecesInRightPlace += 1
+
             }
         }
+        print(piecesInRightPlace)
         self.currentNode = nil
     }
 }

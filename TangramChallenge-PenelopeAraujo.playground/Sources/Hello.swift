@@ -7,12 +7,10 @@ var backgroundMusic = AVAudioPlayer()
 
 public class Hello: SKScene{
     
-
-    
     let helloLabel = SKLabelNode()
     let puzzleLabel = SKLabelNode()
     
-    let tangramImage = SKSpriteNode(imageNamed: "tangram130")
+    let tangramImage = SKSpriteNode(imageNamed: "tangram")
     
     let letsGoButton = SKShapeNode()
     let letsGoButtonLabel = SKLabelNode()
@@ -22,7 +20,8 @@ public class Hello: SKScene{
         let frame = CGRect(x: 0, y: 0, width: 600, height: 500)
         self.backgroundColor = #colorLiteral(red: 0.9882352941, green: 1, blue: 0.9176470588, alpha: 1)
         
-        self.tangramImage.position = CGPoint(x:self.frame.midX, y:self.frame.midY - 30)
+        self.tangramImage.scale(to: CGSize(width: 180, height: 180))
+        self.tangramImage.position = CGPoint(x:self.frame.midX, y:self.frame.midY - 50)
         self.addChild(tangramImage)
         
         self.createButton()
@@ -40,17 +39,10 @@ public class Hello: SKScene{
         let helloString = NSMutableAttributedString(string: "Hello! I'm called Tangram ☺️", attributes: [NSMutableAttributedString.Key.font : UIFont.systemFont(ofSize: 35, weight: .heavy)])
         let puzzleString = NSMutableAttributedString(string: "I'm a chinese puzzle originated centuries ago. Let's learn more about me?", attributes: [NSMutableAttributedString.Key.font : UIFont.systemFont(ofSize: 28, weight: .ultraLight), NSMutableAttributedString.Key.paragraphStyle: paragraphStyle])
 
-//        self.helloLabel.fontColor = #colorLiteral(red: 0.1136495237, green: 0.1230508229, blue: 0.1367085753, alpha: 1)
-//        self.helloLabel.fontName = ".SFUIText"
-//        self.helloLabel.fontSize = 35
         self.helloLabel.attributedText = helloString
         self.helloLabel.position = CGPoint(x: self.frame.midX, y: self.frame.midY + 130)
         self.addChild(helloLabel)
         
-//        self.puzzleLabel.fontColor = #colorLiteral(red: 0.1136495237, green: 0.1230508229, blue: 0.1367085753, alpha: 1)
-//        self.puzzleLabel.fontSize = 28
-//        self.puzzleLabel.numberOfLines = 2
-//        self.puzzleLabel.lineBreakMode = .byWordWrapping
         self.puzzleLabel.attributedText = puzzleString
         self.puzzleLabel.position = CGPoint(x: self.frame.midX, y: self.frame.midY + 50)
         self.puzzleLabel.numberOfLines = 2
