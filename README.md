@@ -1,4 +1,4 @@
-# WWDC2019
+# Tangram Challenge - WWDC Scolarship Application
 
 This playground was created for WWDC 2019 Scolarship Application.
 
