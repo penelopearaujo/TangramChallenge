@@ -35,6 +35,10 @@ enum PieceIdentifier: String, CaseIterable {
 
 public class ThirdScene: SKScene {
     
+    // create buttons for ending the game
+    let endButton = SKShapeNode()
+    let endButtonLabel = SKLabelNode()
+    
     // create labels for instructions
     let challengeLabel = SKLabelNode()
     let instructionsLabel = SKLabelNode()
@@ -70,22 +74,22 @@ public class ThirdScene: SKScene {
     var parallel = SKSpriteNode()
     
     // MARK: Create entire tangram pieces
-    var bigTriangle1 = Piece(name: PieceIdentifier.triangle1.rawValue, shape: SKSpriteNode(), angle: 0, originalPosition: CGPoint(x: 50, y: 100))
-    var bigTriangle2 = Piece(name: PieceIdentifier.triangle2.rawValue, shape: SKSpriteNode(), angle: 0, originalPosition: CGPoint(x: 100, y: 150))
-    var smallTriangle1 = Piece(name: PieceIdentifier.triangle3.rawValue, shape: SKSpriteNode(), angle: 0, originalPosition: CGPoint(x: 50, y: 25))
-    var smallTriangle2 = Piece(name: PieceIdentifier.triangle4.rawValue, shape: SKSpriteNode(), angle: 0, originalPosition: CGPoint(x: 125, y: 100))
-    var mediumTriangle = Piece(name: PieceIdentifier.triangle5.rawValue, shape: SKSpriteNode(), angle: 0, originalPosition: CGPoint(x: 100, y: 50))
-    var square = Piece(name: PieceIdentifier.square.rawValue, shape: SKSpriteNode(), angle: 0, originalPosition: CGPoint(x: 100, y: 50))
-    var parallelogram = Piece(name: PieceIdentifier.parallelogram.rawValue, shape: SKSpriteNode(), angle: 0, originalPosition: CGPoint(x: 175, y: 125))
+    var bigTriangle1 = Piece(name: PieceIdentifier.triangle1.rawValue, shape: SKSpriteNode(), angle: 0, originalPosition: CGPoint(x: 70, y: 120))
+    var bigTriangle2 = Piece(name: PieceIdentifier.triangle2.rawValue, shape: SKSpriteNode(), angle: 0, originalPosition: CGPoint(x: 120, y: 170))
+    var smallTriangle1 = Piece(name: PieceIdentifier.triangle3.rawValue, shape: SKSpriteNode(), angle: 0, originalPosition: CGPoint(x: 70, y: 45))
+    var smallTriangle2 = Piece(name: PieceIdentifier.triangle4.rawValue, shape: SKSpriteNode(), angle: 0, originalPosition: CGPoint(x: 145, y: 120))
+    var mediumTriangle = Piece(name: PieceIdentifier.triangle5.rawValue, shape: SKSpriteNode(), angle: 0, originalPosition: CGPoint(x: 200, y: 40))
+    var square = Piece(name: PieceIdentifier.square.rawValue, shape: SKSpriteNode(), angle: 0, originalPosition: CGPoint(x: 120, y: 70))
+    var parallelogram = Piece(name: PieceIdentifier.parallelogram.rawValue, shape: SKSpriteNode(), angle: 0, originalPosition: CGPoint(x: 195, y: 145))
     
     // MARK: Create challenge pieces
-    var challengeBigTriangle1 = ChallengePiece(name: "triangle1Challenge", shape: SKSpriteNode(), maxXPosition: 385, minXPosition: 365, maxYPosition: 185, minYPosition: 165, position: CGPoint(x: 455, y: 175), angle: 0)
-    var challengeBigTriangle2 = ChallengePiece(name: "triangle2Challenge", shape: SKSpriteNode(), maxXPosition: 385, minXPosition: 365, maxYPosition: 283, minYPosition: 263, position: CGPoint(x: 455, y: 273), angle: 4.71238899230957)
+    var challengeBigTriangle1 = ChallengePiece(name: "triangle1Challenge", shape: SKSpriteNode(), maxXPosition: 465, minXPosition: 445, maxYPosition: 185, minYPosition: 165, position: CGPoint(x: 455, y: 175), angle: 0)
+    var challengeBigTriangle2 = ChallengePiece(name: "triangle2Challenge", shape: SKSpriteNode(), maxXPosition: 465, minXPosition: 445, maxYPosition: 283, minYPosition: 263, position: CGPoint(x: 455, y: 273), angle: 4.71238899230957)
     var challengeSmallTriangle1 = ChallengePiece(name: "triangle3Challenge", shape: SKSpriteNode(), maxXPosition: 460, minXPosition: 440, maxYPosition: 85, minYPosition: 65, position: CGPoint(x: 530, y: 75), angle: 1.5707963705062866)
-    var challengeSmallTriangle2 = ChallengePiece(name: "triangle4Challenge", shape: SKSpriteNode(), maxXPosition: 385, minXPosition: 365, maxYPosition: 410, minYPosition: 390, position: CGPoint(x: 455, y: 400), angle: 4.71238899230957)
-    var challengeMediumTriangle = ChallengePiece(name: "triangle5Challenge", shape: SKSpriteNode(), maxXPosition: 385, minXPosition: 365, maxYPosition: 409, minYPosition: 389, position: CGPoint(x: 455, y: 399), angle: 3.1415927410125732)
-    var challengeSquare = ChallengePiece(name: "squareChallenge", shape: SKSpriteNode(), maxXPosition: 435, minXPosition: 415, maxYPosition: 135, minYPosition: 115, position: CGPoint(x: 505, y: 125), angle: 0)
-    var challengeParallelogram = ChallengePiece(name: "parallelogramChallenge", shape: SKSpriteNode(), maxXPosition: 310, minXPosition: 290, maxYPosition: 110, minYPosition: 90, position: CGPoint(x: 380, y: 100), angle: 0)
+    var challengeSmallTriangle2 = ChallengePiece(name: "triangle4Challenge", shape: SKSpriteNode(), maxXPosition: 465, minXPosition: 445, maxYPosition: 409, minYPosition: 389, position: CGPoint(x: 455, y: 399), angle: 4.71238899230957)
+    var challengeMediumTriangle = ChallengePiece(name: "triangle5Challenge", shape: SKSpriteNode(), maxXPosition: 465, minXPosition: 445, maxYPosition: 334, minYPosition: 314, position: CGPoint(x: 485, y: 294), angle: 3.1415927410125732)
+    var challengeSquare = ChallengePiece(name: "squareChallenge", shape: SKSpriteNode(), maxXPosition: 515, minXPosition: 495, maxYPosition: 135, minYPosition: 115, position: CGPoint(x: 505, y: 125), angle: 0)
+    var challengeParallelogram = ChallengePiece(name: "parallelogramChallenge", shape: SKSpriteNode(), maxXPosition: 390, minXPosition: 370, maxYPosition: 110, minYPosition: 90, position: CGPoint(x: 380, y: 100), angle: 0)
     
     var allTangramPieces: [Piece] = []
     
@@ -95,7 +99,6 @@ public class ThirdScene: SKScene {
     // MARK: Basic scence settings
     override public func didMove(to view: SKView) {
         
-        let frame = CGRect(x: 0, y: 0, width: 600, height: 500)
         self.backgroundColor = #colorLiteral(red: 0.9882352941, green: 1, blue: 0.9176470588, alpha: 1)
         
         self.setChallenge()
@@ -153,6 +156,23 @@ public class ThirdScene: SKScene {
         }
     }
     
+    // Set button to the end
+    func setEndButton(){
+        let endButtonString = NSMutableAttributedString(string: "Ok! Finished it! 🎉", attributes: [NSMutableAttributedString.Key.font : UIFont.systemFont(ofSize: 18, weight: .heavy), .foregroundColor : #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)])
+        
+        self.endButton.path = UIBezierPath(roundedRect: CGRect(x: 0, y: 0, width: 200, height: 35), cornerRadius: 20).cgPath
+        self.endButton.fillColor = #colorLiteral(red: 0.5176470588, green: 0.6470588235, blue: 0.6156862745, alpha: 1)
+        self.endButton.lineWidth = 1
+        self.endButton.strokeColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
+        self.endButton.position = CGPoint(x:self.frame.minX + 60, y:self.frame.midY)
+
+        self.endButtonLabel.attributedText = endButtonString
+        self.endButtonLabel.position = CGPoint(x: endButton.frame.midX, y: endButton.frame.midY-8)
+        
+        self.addChild(endButton)
+        self.addChild(endButtonLabel)
+    }
+    
     
     public override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         // recognize if touched object is a tangram piece
@@ -164,8 +184,6 @@ public class ThirdScene: SKScene {
                     if let identifier = PieceIdentifier(rawValue: name) {
                         if PieceIdentifier.allCases.contains(identifier) {
                             self.currentNode = node
-                            print("o nome é \(self.currentNode?.name)")
-                            print("o node é \(node)")
                         }
                     }
                 }
@@ -223,10 +241,10 @@ public class ThirdScene: SKScene {
             isInTheRightAngle = false
         }
         
-//        print("id \(identifier) is \(isInTheRightAngle)")
-        
+        print("id \(identifier) is \(isInTheRightAngle)")
+
         var piecesInRightPlace = 0
-        
+
         // MARK: Put the piece in the right place if its nearby
         if isInTheRightAngle {
             if (challengeBigTriangle1.minXPosition)...(challengeBigTriangle1.maxXPosition) ~= Float(bigTriangle1.shape.position.x) || (challengeBigTriangle1.minYPosition)...(challengeBigTriangle1.maxYPosition) ~= Float(bigTriangle1.shape.position.y){
@@ -237,42 +255,52 @@ public class ThirdScene: SKScene {
             if (challengeBigTriangle2.minXPosition)...(challengeBigTriangle2.maxXPosition) ~= Float(bigTriangle2.shape.position.x) || (challengeBigTriangle2.minYPosition)...(challengeBigTriangle2.maxYPosition) ~= Float(bigTriangle2.shape.position.y) {
                 bigTriangle2.shape.position = challengeBigTriangle2.position
                 piecesInRightPlace += 1
-
+                
             }
             
             if (challengeParallelogram.minXPosition)...(challengeParallelogram.maxXPosition) ~= Float(parallelogram.shape.position.x) || (challengeParallelogram.minYPosition)...(challengeParallelogram.maxYPosition) ~= Float(parallelogram.shape.position.y) {
                 parallelogram.shape.position = challengeParallelogram.position
                 piecesInRightPlace += 1
-
+                
             }
             
             if (challengeSquare.minXPosition)...(challengeSquare.maxXPosition) ~= Float(square.shape.position.x) || (challengeSquare.minYPosition)...(challengeSquare.maxYPosition) ~= Float(square.shape.position.y) {
                 square.shape.position = challengeSquare.position
                 piecesInRightPlace += 1
-
+                
             }
             
             if (challengeSmallTriangle1.minXPosition)...(challengeSmallTriangle1.maxXPosition) ~= Float(smallTriangle1.shape.position.x) || (challengeSmallTriangle1.minYPosition)...(challengeSmallTriangle1.maxYPosition) ~= Float(smallTriangle1.shape.position.y) {
                 smallTriangle1.shape.position = challengeSmallTriangle1.position
                 piecesInRightPlace += 1
-
+                
             }
             
             if (challengeSmallTriangle2.minXPosition)...(challengeSmallTriangle2.maxXPosition) ~= Float(smallTriangle2.shape.position.x) || (challengeSmallTriangle2.minYPosition)...(challengeSmallTriangle2.maxYPosition) ~= Float(smallTriangle2.shape.position.y) {
                 smallTriangle2.shape.position = challengeSmallTriangle2.position
                 piecesInRightPlace += 1
-
+                
             }
             
             if (challengeMediumTriangle.minXPosition)...(challengeMediumTriangle.maxXPosition) ~= Float(mediumTriangle.shape.position.x) || (challengeMediumTriangle.minYPosition)...(challengeMediumTriangle.maxYPosition) ~= Float(mediumTriangle.shape.position.y) {
                 mediumTriangle.shape.position.x = challengeMediumTriangle.position.x
-                mediumTriangle.shape.position.y = challengeMediumTriangle.position.y - 75
+                mediumTriangle.shape.position.y = challengeMediumTriangle.position.y
                 piecesInRightPlace += 1
-
+                
             }
         }
-        print(piecesInRightPlace)
+        
+        if piecesInRightPlace >= 6 {
+//            self.hintLabel.removeFromParent()
+//            self.setEndButton()
+            let sceneMoveTo = EndScene(size: self.size)
+            sceneMoveTo.scaleMode = self.scaleMode
+            
+            let transition = SKTransition.fade(withDuration: 1)
+//            let transition = SKTransition.moveIn(with: .up, duration: 1)
+            self.scene?.view?.presentScene(sceneMoveTo ,transition: transition)
+        }
+        
         self.currentNode = nil
     }
 }
-

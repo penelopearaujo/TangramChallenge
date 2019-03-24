@@ -25,7 +25,6 @@ public class SecondScene: SKScene{
     
     override public func didMove(to view: SKView) {
         
-        let frame = CGRect(x: 0, y: 0, width: 600, height: 500)
         self.backgroundColor = #colorLiteral(red: 0.9882352941, green: 1, blue: 0.9176470588, alpha: 1)
         
         self.setLabels()
@@ -201,6 +200,7 @@ public class SecondScene: SKScene{
             // set button to next scene
             let nextButton = SKShapeNode()
             let nextButtonLabel = SKLabelNode()
+            let nextButtonString = NSMutableAttributedString(string: "Great! Now let's solve a challenge!", attributes: [NSMutableAttributedString.Key.font : UIFont.systemFont(ofSize: 18, weight: .heavy), .foregroundColor : #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)])
 
             nextButton.path = UIBezierPath(roundedRect: CGRect(x: 0, y: 0, width: 400, height: 35), cornerRadius: 20).cgPath
             nextButton.position = CGPoint(x:self.frame.midX - 200, y:self.frame.midY - 210)
@@ -208,9 +208,7 @@ public class SecondScene: SKScene{
             nextButton.lineWidth = 1
             nextButton.strokeColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
             
-            nextButtonLabel.text = "Great! Now let's solve some challenges!"
-            nextButtonLabel.fontSize = 18
-            nextButtonLabel.fontName = ".SFUIText"
+            nextButtonLabel.attributedText = nextButtonString
             nextButtonLabel.position = CGPoint(x: nextButton.frame.midX, y: nextButton.frame.midY-8)
             
             self.addChild(nextButton)
