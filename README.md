@@ -1,6 +1,6 @@
-# Tangram Challenge - WWDC Scolarship Application [Accepted]
+# Tangram Challenge - WWDC Scholarship Application [Accepted]
 
-This playground was created for WWDC 2019 Scolarship Application.
+This playground was created for WWDC 2019 Scholarship Application.
 
 ## Project
 The Playground is a simple game for teaching kids a litte bit about geometric shapes using the chinese puzzle Tangram. They can learn what is a square, triangle and parallelogram and also build a rocket using the seven Tangram pieces.
